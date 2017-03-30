@@ -154,6 +154,48 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
+                        <a class="link-unstyled" href="/2017/03/30/替换Homebrew源为中科大镜像/">
+                            替换Homebrew源为中科大镜像
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-03-30T12:45:30+08:00">
+	
+		    3月 30, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <p>homebrew主要分两部分：git repo（位于GitHub）和二进制bottles（位于bintray），这两者在国内访问都不太顺畅。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">替换brew.git:</div><div class="line">cd &quot;$(brew --repo)&quot;</div><div class="line">git remote set-url origin https://mirrors.ustc.edu.cn/brew.git</div><div class="line"></div><div class="line">替换homebrew-core.git:</div><div class="line">cd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;</div><div class="line">git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</div></pre></td></tr></table></figure></p>
+
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/2017/03/30/替换Homebrew源为中科大镜像/#post-footer" class="postShorten-excerpt_link link">
+                                注释和共享
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
                         <a class="link-unstyled" href="/2017/03/26/First-Page/">
                             First Page
                         </a>
@@ -286,6 +328,25 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://skylinejia.github.io/2017/03/30/替换Homebrew源为中科大镜像/">
+                            <h3 class="media-heading">替换Homebrew源为中科大镜像</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年3月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -293,7 +354,7 @@
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 1 篇文章
+                找到 2 篇文章
             </p>
         </div>
     </div>
