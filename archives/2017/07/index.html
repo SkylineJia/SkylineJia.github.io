@@ -6,23 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="蔡鹏嘉">
-    <title>First Page - 蔡鹏嘉</title>
+    <title>归档: 2017/7 - 蔡鹏嘉</title>
     <meta name="author" content="蔡鹏嘉">
     
     
         <link rel="icon" href="https://skylinejia.github.io/assets/images/favicon.ico">
     
     
-    <meta name="description" content="Hexo + Github Pages搭了个博客">
-<meta property="og:type" content="blog">
-<meta property="og:title" content="First Page">
-<meta property="og:url" content="https://skylinejia.github.io/2017/03/26/First-Page/index.html">
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="蔡鹏嘉">
+<meta property="og:url" content="https://skylinejia.github.io/archives/2017/07/index.html">
 <meta property="og:site_name" content="蔡鹏嘉">
-<meta property="og:description" content="Hexo + Github Pages搭了个博客">
-<meta property="og:updated_time" content="2017-03-26T06:52:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="First Page">
-<meta name="twitter:description" content="Hexo + Github Pages搭了个博客">
+<meta name="twitter:title" content="蔡鹏嘉">
     
     
         
@@ -51,7 +47,7 @@
         
     
 
-<header id="header" data-behavior="5">
+<header id="header" data-behavior="2">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/ ">蔡鹏嘉</a>
@@ -75,7 +71,7 @@
         
     
 
-<nav id="sidebar" data-behavior="5">
+<nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -144,99 +140,92 @@
 </nav>
 
             
-            <div id="main" data-behavior="5"
+            <div id="main" data-behavior="2"
                  class="
                         hasCoverMetaIn
                         ">
                 
-<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    <section class="postShorten-group main-content-wrap">
     
     
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title" itemprop="headline">
-            First Page
-        </h1>
-    
-    <div class="post-meta">
-    <time itemprop="datePublished" datetime="2017-03-26T14:50:25+08:00">
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/07/18/生成后台需要apns证书/">
+                            生成后台需要apns证书
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-07-18T17:59:36+08:00">
 	
-		    3月 26, 2017
+		    7月 18, 2017
     	
     </time>
     
 </div>
 
-</div>
-    
-    <div class="post-content markdown" itemprop="articleBody">
-        <div class="main-content-wrap">
-            <p>Hexo + Github Pages搭了个博客</p>
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <h6 id="开发证书为例"><a href="#开发证书为例" class="headerlink" title="开发证书为例"></a>开发证书为例</h6><ul>
+<li><p>如果还没生成AppleID和证书，先去开发者中心生成 aps_devlopment.cer文件；然后下载；双击导入钥匙串；</p>
+</li>
+<li><p>导出证书和密钥</p>
+<ul>
+<li>Mac 打开钥匙串 -&gt;选择登录-&gt;证书-&gt;找到该项目 Apple Development iOS Push Server证书右键导出apns_dev_cert.p12文件，不要设置密码</li>
+<li>然后 选择密钥-&gt;找到 User下面的Apple Development iOS Push Server密钥-&gt;右键导出 apns_dev_key.p12文件，不要设置密码</li>
+</ul>
+</li>
+<li><p>打开终端，把上面的p12文件生成 .pem文件</p>
+<ul>
+<li><code>openssl pkcs12 -clcerts -nokeys -out apns-dev-cert.pem -in apns_dev_cert.p12</code>  生成apns-dev-cert.pem</li>
+<li><code>openssl pkcs12 -nocerts -out apns-dev-key.pem -in apns_dev_key.p12</code>   生成apns-dev-key.pem 这个要输入密码，记住输入的密码；</li>
+</ul>
+</li>
+<li><p>(可选，把密码取消 )    <code>openssl rsa -in apns-dev-key.pem -out apns-dev-key-noenc.pem</code></p>
+<p> 生成 apns-dev-key-noenc.pem</p>
+</li>
+<li><p>假如服务器需要的是pem文件</p>
+<p>把证书.pem和密钥.pem合成一个.pem    <code>cat apns-dev-cert.pem apns-dev-key.pem &gt; anpms-dev.pem</code>    </p>
+</li>
+<li><p>假如服务器需要的是p12文件</p>
+<p><code>openssl pkcs12 -export -inkey apns-dev-key.pem -in apns-dev-cert.pem -out aps_dev.p12</code></p>
+</li>
+<li><p>测试推送 <a href="https://github.com/noodlewerk/NWPusher" target="_blank" rel="external">https://github.com/noodlewerk/NWPusher</a></p>
+</li>
+<li><p>最后把证书和密码拿到后台配置就行了</p>
+</li>
+</ul>
 
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/2017/07/18/生成后台需要apns证书/#post-footer" class="postShorten-excerpt_link link">
+                                注释和共享
+                            </a>
+                        </p>
+                    
+                </div>
             
         </div>
-    </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
         
-        <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/30/替换Homebrew源为中科大镜像/"  data-tooltip="替换Homebrew源为中科大镜像">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--disabled">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-google-plus"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-facebook-official"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </li>
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
         
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
+        
+        <li class="pagination-number">第 1 页 共 1 页</li>
     </ul>
 </div>
 
-
-        
-            
-        
-    </div>
-</article>
+</section>
 
 
 
@@ -247,84 +236,6 @@
 </footer>
 
             </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/30/替换Homebrew源为中科大镜像/"  data-tooltip="替换Homebrew源为中科大镜像">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--disabled">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-google-plus"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-facebook-official"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </li>
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-                </div>
-                <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-    <ul class="share-options">
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://skylinejia.github.io/2017/03/26/First-Page/">
-                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
-            </a>
-        </li>
-    </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
-
             
         </div>
         
@@ -458,8 +369,6 @@
         <!--SCRIPTS-->
 <script src="/assets/js/script-rt08quwts7iav5x0cfd2ym0gb5qkd1lvrsmwrakxtkhefmaaes4ywkmnjnwf.min.js"></script>
 <!--SCRIPTS END-->
-
-    
 
 
 

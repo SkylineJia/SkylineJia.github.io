@@ -153,6 +153,76 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
+                        <a class="link-unstyled" href="/2017/07/18/生成后台需要apns证书/">
+                            生成后台需要apns证书
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-07-18T17:59:36+08:00">
+	
+		    7月 18, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <h6 id="开发证书为例"><a href="#开发证书为例" class="headerlink" title="开发证书为例"></a>开发证书为例</h6><ul>
+<li><p>如果还没生成AppleID和证书，先去开发者中心生成 aps_devlopment.cer文件；然后下载；双击导入钥匙串；</p>
+</li>
+<li><p>导出证书和密钥</p>
+<ul>
+<li>Mac 打开钥匙串 -&gt;选择登录-&gt;证书-&gt;找到该项目 Apple Development iOS Push Server证书右键导出apns_dev_cert.p12文件，不要设置密码</li>
+<li>然后 选择密钥-&gt;找到 User下面的Apple Development iOS Push Server密钥-&gt;右键导出 apns_dev_key.p12文件，不要设置密码</li>
+</ul>
+</li>
+<li><p>打开终端，把上面的p12文件生成 .pem文件</p>
+<ul>
+<li><code>openssl pkcs12 -clcerts -nokeys -out apns-dev-cert.pem -in apns_dev_cert.p12</code>  生成apns-dev-cert.pem</li>
+<li><code>openssl pkcs12 -nocerts -out apns-dev-key.pem -in apns_dev_key.p12</code>   生成apns-dev-key.pem 这个要输入密码，记住输入的密码；</li>
+</ul>
+</li>
+<li><p>(可选，把密码取消 )    <code>openssl rsa -in apns-dev-key.pem -out apns-dev-key-noenc.pem</code></p>
+<p> 生成 apns-dev-key-noenc.pem</p>
+</li>
+<li><p>假如服务器需要的是pem文件</p>
+<p>把证书.pem和密钥.pem合成一个.pem    <code>cat apns-dev-cert.pem apns-dev-key.pem &gt; anpms-dev.pem</code>    </p>
+</li>
+<li><p>假如服务器需要的是p12文件</p>
+<p><code>openssl pkcs12 -export -inkey apns-dev-key.pem -in apns-dev-cert.pem -out aps_dev.p12</code></p>
+</li>
+<li><p>测试推送 <a href="https://github.com/noodlewerk/NWPusher" target="_blank" rel="external">https://github.com/noodlewerk/NWPusher</a></p>
+</li>
+<li><p>最后把证书和密码拿到后台配置就行了</p>
+</li>
+</ul>
+
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/2017/07/18/生成后台需要apns证书/#post-footer" class="postShorten-excerpt_link link">
+                                注释和共享
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
                         <a class="link-unstyled" href="/2017/03/30/替换Homebrew源为中科大镜像/">
                             替换Homebrew源为中科大镜像
                         </a>
@@ -345,6 +415,25 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://skylinejia.github.io/2017/07/18/生成后台需要apns证书/">
+                            <h3 class="media-heading">生成后台需要apns证书</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月18日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -352,7 +441,7 @@
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 2 篇文章
+                找到 3 篇文章
             </p>
         </div>
     </div>
